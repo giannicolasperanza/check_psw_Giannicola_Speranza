@@ -1,6 +1,6 @@
 <?php
 
-$password = readline("Inserisci la tua password : ");
+// $password = readline("Inserisci la tua password : ");
 
 // funzione per vedere se ha minimo 8 caratteri
 function checkMinChar($psw){
@@ -33,16 +33,25 @@ function checkMaiusc($psw){
 }
 // Funzione globale del check password
 function checkPassword($psw){
+    $check = true;
     if(checkMinChar($psw) && checkNumber($psw)  && checkMaiusc($psw)){
         echo "La password inserita è corretta!\n";
+        $check = true;
     }else{
         echo "La Password non è valida!\n";
-        if(!checkMinChar($psw)){echo "La password deve avere almeno 8 caratteri\\n";}
+        if(!checkMinChar($psw)){echo "La password deve avere almeno 8 caratteri\n";}
         if(!checkNumber($psw)){ echo "La Password deve contenere almeno un numero\n";}
         if(!checkMaiusc($psw)){ echo "La Password deve contenere almeno una lettera Maiuscola\n";}
-
+        $check = false;
+        // $password = readline("Inserisci la tua password : ");
+        
     }
-
+    return $check;
 }
 
-checkPassword($password);
+// checkPassword($password);
+
+do {
+$password = readline("Inserisci la tua password : ");
+
+} while (!checkPassword($password));
